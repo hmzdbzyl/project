@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*要求： 
+使用函数的四种调用模式以及bind模式来调用test函数并注释使用的是哪一种调用模式，如： 
+//使用函数调用模式调用test函数 
+test（）； 
+    function test() {
+      console.log("this: "+this);
+    }
+    */
+
+    //-----------方法调用-----------------------------
+    var obj = {
+      age: 18,
+      test: function () {
+        console.log("this: " + this);
+      }
+    };
+    obj.test();
+    //------------函数调用模式调用-------------------
+    function test() {
+      console.log("this: " + this);
+    };
+    test();
+    //-----------------自调用----------------------
+    (function test() {
+      console.log("this: " + this);
+    })();
+    //--------------构造器---------------------------
+    function Test() {
+      console.log("this: " + this);
+    };
+    var obj1 = new Test();
+    // ----------------bind--------------------------
+    var test = function () {
+      console.log("this: " + this);
+    };
+    var testss = test.bind(obj);
+    testss();
+    //-------------------call-------------------------
+    var test = function () {
+      console.log("this: " + this);
+    };
+    test.call(obj);
+    //----------------------函数返回值---------------------
+    function fn () {
+      return function () {
+        console.log("this: " + this);
+      }
+    };
+    fn()()
+
+
+
+  </script>
+</body>
+
+</html>
